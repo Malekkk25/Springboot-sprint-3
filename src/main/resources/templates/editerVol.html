@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template">
+<link rel="stylesheet" type="text/css" href="webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+<head>
+<meta charset="utf-8">
+<title>Ajout des Vols</title>
+</head>
+<body>
+<div layout:fragment="Mycontent">
+<div class="container mt-5">
+<div class="card">
+ <div class="card-header">
+ Modifier des Vols
+ </div>
+ <div class="card-body">
+<form th:action="@{saveVol}" method="post">
+<div class="form-group">
+<label class="control-label" hidden>ID Vol :</label>
+ <input type="hidden" name="idVol" class="form-control"
+th:value="${vol.idVol}" />
+</div>
+<div class="form-group">
+<label class="control-label">Numero Vol :</label>
+<input type="text" name="numVol" class="form-control"
+th:value="${vol.numVol}" />
+<span th:errors= ${vol.numVol} class="text-danger">
+	</div>
+<div class="form-group">
+<label class="control-label">Destination :</label>
+ <input type="text" name="destination" class="form-control"
+th:value="${vol.destination}" />
+ <span th:errors=${vol.destination} class="text-danger">
+</span>
+</div>
+<div class="form-group">
+<label class="control-label">Agence :</label>
+ <input type="text" name="agence" class="form-control"
+th:value="${vol.agence}" />
+ <span th:errors=${vol.agence} class="text-danger">
+</span>
+</div>
+<div class="form-group">
+<label class="control-label">Etat :</label>
+ <input type="text" name="etat" class="form-control"
+th:value="${vol.etat}" />
+ <span th:errors=${vol.etat} class="text-danger">
+</span>
+</div>
+<div class="form-group">
+<label class="control-label">date Départ :</label>
+<input type="date" name="dateDepart" class="form-control" 
+th:value="${vol.dateDepart}"/>
+<span th:errors=${vol.dateDepart} class="text-danger">
+</span>
+</div>
+<div>
+<button type="submit" class="btn btn-primary">Valider</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template">
+<link rel="stylesheet" type="text/css" href="webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+<head>
+<meta charset="utf-8">
+<title>Liste des Vols</title>
+</head>
+<body>
+<div layout:fragment="Mycontent">
+<div class="container mt-5">
+<div class="card">
+ <div class="card-header">
+Liste des Vols
+ </div>
+ <div class="card-body"> 
+ <table class="table table-striped">
+ <tr>
+<th>Num Vol</th><th>Agence</th><th>Destination</th><th>etat</th><th>Aeroport</th><th>Editer</th><th>Supprimer</th>
+ </tr> 
+ <tr th:each="v:${vols.content}">
+<td th:text="${v.numVol}"></td>
+ <td th:text="${v.agence}"></td>
+ <td th:text="${v.destination}"></td> 
+ <td th:text="${v.etat}"></td> 
+  <td th:text="${v.aeroport != null ? v.aeroport.nomAir : ''}"></td>
+<td sec:authorize="hasRole('ADMIN')"><a class="btn btn-primary" th:href="@{modifierVol(id=${v.idVol},page=${currentPage})}">Edit</a></td>
+<td sec:authorize="hasRole('ADMIN')"><a class="btn btn-danger"  onclick="return confirm('Are you sure ?')" th:href="@{supprimerVol(id=${v.idVol},
+page=${currentPage},size=${size})}">Delete</a></td>
+ </tr> 
+ </table>
+ <ul class="nav nav-pills">
+ <li th:each="page,status:${pages}">
+ <a th:class="${status.index==currentPage?'btn btn-primary':'btn' }"
+ th:href="@{ ListeVols(page=${status.index}, size=${size} ) }"
+ th:text="${status.index }"></a>
+ </li>
+ </ul>
+ 
+ </div>
+</div>
+</div>
+</div>
+</body>
+</html>

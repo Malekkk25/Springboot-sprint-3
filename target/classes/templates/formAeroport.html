@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter Aeroport</title>
+    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/main.css" />
+    <script type="text/javascript" src="webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div layout:fragment="Mycontent">
+    <div class="container mt-5">
+    <div class="card">
+ <div class="card-header" th:if="${mode=='new'}"> Add Aeroport</div>
+ <div class="card-header" th:if="${mode=='edit'}">Update Aeroport</div>
+        <div class="card-body">
+            <form action="saveAeroport" method="post">
+            
+					            <div class="form-group">
+					<label class="control-label" hidden>ID :</label>
+					<input type="hidden" name="idAir" class="form-control"
+					th:value="${aeroport.idAir}" />
+					 </div>
+
+                <div class="form-group">
+                    <label class="control-label">Name : </label>
+                    <input type="text" name="nomAir" class="form-control" th:value="${aeroport.nomAir}"/>
+                    <span th:errors= ${aeroport.nomAir} class="text-danger"> </span>
+                    
+                </div>
+					              <div class="form-group">
+					<label class="control-label">Adresse :</label>
+					 <input type="text" name="adresseAir" class="form-control"
+					th:value="${aeroport.adresseAir}" />
+					 <span th:errors=${aeroport.adresseAir} class="text-danger">
+					</span>
+					</div>
+
+                <div>
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </div>
+            </form>
+        </div>
+        <br/>
+        <br/>
+        <a href="ListRayons">List Aeroports</a>
+    </div>
+</div>
+</body>
+</html>
